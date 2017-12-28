@@ -36,7 +36,7 @@ router.get('/post/:postID', function(req, res){
     BlogPost.findById(req.params.postID, function(err, foundPost) {
         if (err)
             res.send({success: false, message: err});
-        if(foundPost == null)
+        else if (foundPost == null)
             res.send({success: false, message: "No post with id " + req.params.postID + " found"})
         else
             res.send({success: true, data: foundPost});
@@ -68,17 +68,17 @@ router.delete('/post/:postID', passport.authenticate('jwt', { session: false, fa
     {
         if (err)
             res.send({success: false, message: err.message});
-        if(foundPost == null)
+        else if(foundPost == null)
             res.send({success: false, message: "No post with id " + req.params.postID + " found"})
         else
         {
             foundPost.remove(function(err) 
             {
                 if (err) {
-                        res.send({ success: false, message: err.message });
+                    res.send({ success: false, message: err.message });
                 }
                 else {
-                        res.send({ success: true, message: 'Deleted post.' });
+                    res.send({ success: true, message: 'Deleted post.' });
                 }
             });
         }
@@ -90,7 +90,7 @@ router.post('/post/:postID/edit', passport.authenticate('jwt', { session: false,
     {
         if (err)
             res.send({success: false, message: err.message});
-        if(foundPost == null)
+        else if(foundPost == null)
             res.send({success: false, message: "No post with id " + req.params.postID + " found"})
         else
         {
@@ -103,7 +103,8 @@ router.post('/post/:postID/edit', passport.authenticate('jwt', { session: false,
             foundPost.save(function(err) {
                 if (err) {
                     res.send({ success: false, message: err.message });
-                } else {
+                } 
+                else {
                     res.send({ success: true, message: 'Successfully updated post.' });
                 }
             });
