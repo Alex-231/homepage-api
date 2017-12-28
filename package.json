@@ -1,0 +1,24 @@
+{
+  "name": "homepage-api",
+  "description": "Backend Web API for my homepage.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alex-231/homepage-api"
+  },
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt-node": "^0.1.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.2.1",
+    "mongoose": "^4.7.5",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-google-oauth2": "^0.1.6",
+    "passport-jwt": "^2.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "*"
+  }
+}
