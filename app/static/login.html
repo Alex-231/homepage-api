@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script src="./lib/jquery-3.2.1.min.js"></script>
+        <script src="./lib/jquery.cookie.js"></script>
+        <script>
+        function submitForm()
+        {
+            $.post('../api/auth/login', $('#login').serialize(), function( data ) {
+                if(data.success == false)
+                {
+                    alert(data.message);
+                }
+                else
+                {
+                    $.cookie("token", data.token);
+                    window.location.replace("./dashboard.html");
+                }
+            });
+        }
+        </script>
+    </head>
+    <body>
+        <form id="login">
+            <input name="username" type="text"/>
+            <input name="password" type="password"/>
+            <input type="button" value="Login" onClick="submitForm();"/>
+        </form>
+    </body>
+</html>

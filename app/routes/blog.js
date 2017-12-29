@@ -56,7 +56,7 @@ router.post('/post/new', passport.authenticate('jwt', { session: false, failureR
 
     blogPost.save(function(err) {
         if (err) {
-            res.send({ success: false, message: err });
+            res.send({ success: false, message: err.message });
         }
         else
             res.send({ success: true, message: 'Successfully created new blog post.' });

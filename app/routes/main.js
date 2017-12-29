@@ -17,7 +17,7 @@ module.exports = function(app) {
 
     //Protect dashboard route with jwt,
     apiRoutes.get('/protected', passport.authenticate('jwt', { session: false, failureRedirect: '/api/errors/unauthorized' }), function(req, res) {
-        res.send('It worked! User id is: ' + req.user._id + '.');
+        res.send({success: true, message: 'It worked! User id is: ' + req.user._id + '.'});
     });
 
     apiRoutes.get("/errors/unauthorized", function(req, res) {

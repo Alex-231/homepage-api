@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="./lib/jquery-3.2.1.min.js"></script>
+        <script src="./lib/jquery.cookie.js"></script>
+        <script>
+        function validateJWT()
+        {
+            $.get({
+                url: '../api/protected',
+                beforeSend: function(xhr)
+                {
+                    xhr.setRequestHeader("Authorization", $.cookie("token"))
+                }
+            }).done(function(data){
+                if(data.success == false)
+                {
+                    alert(data.message);
+                    window.location.replace("./login.html");
+                }
+            });
+        }
+
+        function submitPost()
+        {
+            $('textarea[name="body"]').val(simplemde.value());
+
+            $.post({
+                url: '../api/blog/post/new',
+                data: $('#postForm').serialize(),
+                beforeSend: function(xhr)
+                {
+                    xhr.setRequestHeader("Authorization", $.cookie("token"))
+                }
+            }).done(function(data){
+                if(data.success == false)
+                {
+                    alert(data.message);
+                }
+                else
+                {
+                    alert("Created new post.");
+                    window.location.replace("./dashboard.html");
+                }
+            });
+        }
+
+        validateJWT();
+        </script>
+    <style>
+    .editor-toolbar.fullscreen {
+        top:50px;
+    }
+
+    .editor-toolbar.fullscreen::before,.editor-toolbar.fullscreen::after
+    {
+        top:50px;
+    }
+
+    .CodeMirror-fullscreen{
+        top:100px;
+    }
+
+    .editor-preview-side{
+        top:100px;
+    }
+
+    .editor-statusbar{
+        position: absolute;
+        top: 70px;
+        right: 0px;
+        z-index: 100;
+    }
+
+    #title{
+        font-size: 44px;
+        width:50%;
+        height: 44px;
+        position: absolute;
+        top: 0px;
+        left: -2px;
+    }
+
+    #tags{
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        width: 30%;
+        height: 44px;
+        margin-left: 1px;
+    }
+
+    #submit{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height:50px;
+        width:10%;
+        font-size: 24px;
+    }
+    #sticky{
+        position: absolute;
+        top: 10px;
+        left: 80%;
+        height:25px;
+        width:10%;
+        font-size: 30px;
+        margin-left: 8px;
+        text-align: center;
+    }
+    #sticky input{
+        height: 20px;
+        width: 20px;
+    }
+    img {
+        width: 100%;
+    }
+    a[title="Toggle Fullscreen (F11)"]
+    {
+        display: none;
+    }
+
+    </style>
+</head>
+<body>
+    <form id="postForm">
+        <input id="title" type="text" name="title" placeholder="Post Title"/>
+        <input id="tags" type="text" name="tags" placeholder="tag1,tag2"/>
+        <div id="sticky"><span>Sticky?</span><input name="sticky" label="Sticky?" type="checkbox"/></div>
+        <input type="button" id="submit" value="Submit" onClick="submitPost();"/>
+        <textarea form="postForm" name="body"></textarea>
+    </form>
+<script>
+var simplemde = new SimpleMDE({autosave: {enabled: true, uniqueId: "create"}, placeholder: "Type here..."});
+//simplemde.toggleFullScreen();
+simplemde.toggleSideBySide();
+</script>
+</body>
+</html>

@@ -25,6 +25,7 @@ mongoose.connect(config.database, {useMongoClient: true});
 
 //Require routes.
 require('./app/routes/main')(app);
+app.use('/static', express.static('./app/static'))
 
 app.listen(port, 'localhost');
 console.log('Server running on localhost:' + port);
