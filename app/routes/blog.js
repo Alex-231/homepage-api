@@ -18,19 +18,50 @@ router.get('/posts/sticky', function(req, res){
     });
 });
 
+// router.get('/posts/recent', function(req, res){
+//     BlogPost.find({sticky: false}, function(err, foundPosts){
+//         if (err)
+//             res.send({success: false, message: err});
+//         else
+//         {
+//             if(foundPosts.length < 1)
+//                 res.send({success: false, message: "No recent blog posts were found."});
+//             else
+//                 res.send({success: true, data: foundPosts});
+//         }
+//     });
+// });
+
+function censor(censor) {
+    var i = 0;
+  
+    return function(key, value) {
+      if(i !== 0 && typeof(censor) === 'object' && typeof(value) == 'object' && censor == value) 
+        return '[Circular]'; 
+  
+      if(i >= 29) // seems to be a harded maximum of 30 serialized objects?
+        return '[Unknown]';
+  
+      ++i; // so we know we aren't using the original object anymore
+  
+      return value;  
+    }
+  }
+
 router.get('/posts/recent', function(req, res){
-    BlogPost.find({sticky: false}, function(err, foundPosts){
-        if (err)
-            res.send({success: false, message: err});
-        else
-        {
-            if(foundPosts.length < 1)
-                res.send({success: false, message: "No recent blog posts were found."});
-            else
-                res.send({success: true, data: foundPosts});
-        }
-    });
-});
+    BlogPost.find({sticky: false}).sort([["created",-1]]).skip(parseInt(req.query.at)).limit(parseInt(req.query.count)).exec(function(err, foundPosts){
+                if (err)
+                    res.send({success: false, message: err});
+                else
+                {
+                    if(foundPosts.length < 1)
+                        res.send({success: false, message: "No recent blog posts were found."});
+                    else
+                        res.send({success: true, data: foundPosts});
+                }}
+            );
+    //res.send({success: true, data: JSON.stringify(foundPosts, censor(foundPosts))});
+})
 
 router.get('/post/:postID', function(req, res){
     BlogPost.findById(req.params.postID, function(err, foundPost) {
