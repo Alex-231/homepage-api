@@ -57,7 +57,7 @@ router.get('/posts/recent', function(req, res){
                 else
                 {
                     if(foundPosts.length < 1)
-                        res.send({success: false, message: "No recent blog posts were found."});
+                        res.send({success: true, data: []});
                     else
                         res.send({success: true, data: foundPosts});
                 }}
