@@ -11,7 +11,7 @@ router.get('/posts/sticky', function(req, res){
         else
         {
             if(foundPosts.length < 1)
-                res.send({success: false, message: "No stickied blog posts were found."});
+                res.send({success: true, data: []});
             else
                 res.send({success: true, data: foundPosts});
         }
