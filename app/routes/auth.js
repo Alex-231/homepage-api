@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var config = require('../../config/main');
+var passport = require('passport');
 
 //Authentication Routes
 
@@ -57,6 +58,11 @@ router.post('/login', function(req, res) {
             });
         }
     });
+});
+
+//Protect dashboard route with jwt,
+router.get('/protected', passport.authenticate('jwt', { session: false, failureRedirect: '/api/errors/unauthorized' }), function(req, res) {
+    res.send({success: true, message: 'It worked! User id is: ' + req.user._id + '.'});
 });
 
 module.exports = router;

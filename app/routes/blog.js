@@ -92,7 +92,7 @@ router.post('/post/new', passport.authenticate('jwt', { session: false, failureR
             res.send({ success: false, message: err.message });
         }
         else
-            res.send({ success: true, message: 'Successfully created new blog post.' });
+            res.send({ success: true, message: 'Successfully created new blog post.', data: blogPost._id});
     });
 });
 

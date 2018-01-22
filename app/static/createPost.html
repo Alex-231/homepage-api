@@ -9,7 +9,7 @@
         function validateJWT()
         {
             $.get({
-                url: '../api/protected',
+                url: '../api/auth/protected',
                 beforeSend: function(xhr)
                 {
                     xhr.setRequestHeader("Authorization", $.cookie("token"))
