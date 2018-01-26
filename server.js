@@ -8,7 +8,7 @@ var passport = require('passport');
 var jwt = require('jsonwebtoken');
 
 var config = require('./config/main');
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 55555,
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.DEBUG_PORT || 55555,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     mongoURLLabel = "";
@@ -56,4 +56,4 @@ app.use(function(err, req, res, next){
   });
 
 app.listen(port, ip);
-console.log('Server running on localhost:' + port);
+console.log("server started on " + ip + ":" + port);
