@@ -9,9 +9,7 @@ var jwt = require('jsonwebtoken');
 
 var config = require('./config/main');
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.DEBUG_PORT || 55555,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
-    mongoURLLabel = "";
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 'localhost'
 
 //Get POSTS with body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
