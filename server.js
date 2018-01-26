@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //log requests.
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 
 //Initialize passport.
 app.use(passport.initialize());
@@ -50,6 +50,12 @@ app.use("/static", express.static("./app/front/static"));
 require('./app/routes/main')(app);
 app.use('/static', express.static('./app/static'));
 
+
+// error handling
+app.use(function(err, req, res, next){
+    console.error(err.stack);
+    res.status(500).send('Something bad happened!');
+  });
 
 app.listen(port, ip);
 console.log('Server running on localhost:' + port);
