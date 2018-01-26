@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 mongoose.connect(config.database, {useMongoClient: true});
 
 //front end routes
-app.use("", express.static('./app/front/index.html'));
+app.use("/", express.static('./app/front/index.html'));
 app.use("/index.html", express.static('./app/front/index.html'));
 app.use("/manifest.json", express.static('./app/front/manifest.json'));
 app.use("/asset-manifest.json", express.static('./app/front/asset-manifest.json'));
