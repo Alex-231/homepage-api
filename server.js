@@ -8,7 +8,7 @@ var passport = require('passport');
 var jwt = require('jsonwebtoken');
 
 var config = require('./config/main');
-var port = 8080;
+var port = 4000;
 
 //Get POSTS with body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,9 +35,18 @@ app.use(function(req, res, next) {
 //Connect to db
 mongoose.connect(config.database, {useMongoClient: true});
 
+//front end routes
+app.use("", express.static('./app/front/index.html'));
+app.use("/index.html", express.static('./app/front/index.html'));
+app.use("/manifest.json", express.static('./app/front/manifest.json'));
+app.use("/asset-manifest.json", express.static('./app/front/asset-manifest.json'));
+app.use("/service-worker.js", express.static('./app/front/service-worker.js'))
+app.use("/static", express.static("./app/front/static"));
+
 //Require routes.
 require('./app/routes/main')(app);
-app.use('/static', express.static('./app/static'))
+app.use('/static', express.static('./app/static'));
+
 
 app.listen(port, 'localhost');
 console.log('Server running on localhost:' + port);

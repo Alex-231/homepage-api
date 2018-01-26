@@ -24,10 +24,4 @@ module.exports = function(app) {
     apiRoutes.use('/auth', require('./auth'));
     //apiRoutes.use('/debug', require('./debug')); //There's probably a variable I can use to enable this.
     app.use('/api', apiRoutes);
-
-    //Should probably move this later.
-    //Home route
-    // app.get('/', function(req, res) {
-    //     res.send('Homepage route.')
-    // })
 };
