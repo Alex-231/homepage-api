@@ -8,7 +8,7 @@ var passport = require('passport');
 var jwt = require('jsonwebtoken');
 
 var config = require('./config/main');
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.DEBUG_PORT || 55555,
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.DEBUG_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 'localhost'
 
 //Get POSTS with body-parser
