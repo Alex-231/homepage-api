@@ -53,5 +53,10 @@ app.use(function(err, req, res, next){
     res.status(500).send('Something bad happened!');
   });
 
+  app.get('*', function(req, res){
+    res.send('cannot get', 404);
+  });
+  
+
 app.listen(port, ip);
 console.log("server started on " + ip + ":" + port);
