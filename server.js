@@ -41,6 +41,7 @@ app.use("/manifest.json", express.static('./app/front/manifest.json'));
 app.use("/asset-manifest.json", express.static('./app/front/asset-manifest.json'));
 app.use("/service-worker.js", express.static('./app/front/service-worker.js'))
 app.use("/static", express.static("./app/front/static"));
+app.use("*", express.static('./app/front/index.html'))
 
 //Require routes.
 require('./app/routes/main')(app);
@@ -51,10 +52,6 @@ app.use('/static', express.static('./app/static'));
 app.use(function(err, req, res, next){
     console.error(err.stack);
     res.status(500).send('Something bad happened!');
-  });
-
-  app.get('*', function(req, res){
-    res.send('cannot get', 404);
   });
   
 
