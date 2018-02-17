@@ -37,8 +37,8 @@ module.exports = function(app) {
           "    <link>http://alexnewark.co.uk/blog</link>\r\n" +
           "    <description></description>\r\n" +
           "    <language>en-us</language>\r\n" +
-          "    <pubDate>" + Date.now().toString() + "</pubDate>\r\n" +
-          "    <lastBuildDate>" + Date.now().toString() + "</lastBuildDate>\r\n";
+          "    <pubDate>" + new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') + "</pubDate>\r\n" +
+          "    <lastBuildDate>" + new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') + "</lastBuildDate>\r\n";
       
           var rssClose = 
           "    </channel>\r\n" +
@@ -59,7 +59,7 @@ module.exports = function(app) {
               "      <description></description>\r\n" +
               "      <pubDate>" + blogPost.created + "</pubDate>\r\n" +
               "      <guid isPermaLink=\"true\">http://alexnewark.co.uk/blog/post/" + blogPost._id + "</guid>\r\n" +
-              "    </item>";
+              "    </item>\r\n";
             });
       
             res.send(rssRes + rssClose);
