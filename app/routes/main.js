@@ -37,8 +37,8 @@ module.exports = function(app) {
           "    <link>http://alexnewark.co.uk/blog</link>\r\n" +
           "    <description></description>\r\n" +
           "    <language>en-us</language>\r\n" +
-          "    <pubDate>" + Date.now().toString() + "</pubDate>\r\n" +
-          "    <lastBuildDate>" + Date.now().toString() + "</lastBuildDate>\r\n";
+          "    <pubDate>" + Date.now().toUTCString() + "</pubDate>\r\n" +
+          "    <lastBuildDate>" + Date.now().toUTCString() + "</lastBuildDate>\r\n";
       
           var rssClose = 
           "    </channel>\r\n" +
@@ -55,7 +55,7 @@ module.exports = function(app) {
               rssRes = rssRes +
               "    <item>\r\n" +
               "      <title>" + blogPost.title + "</title>\r\n" +
-              "      <link>http://alexnewark.co.uk/blog/post/" + blogPost._id + "</link>\r\n"
+              "      <link>http://alexnewark.co.uk/blog/post/" + blogPost._id + "</link>\r\n" +
               "      <description></description>\r\n" +
               "      <pubDate>" + blogPost.created + "</pubDate>\r\n" +
               "      <guid isPermaLink=\"true\">http://alexnewark.co.uk/blog/post/" + blogPost._id + "</guid>\r\n" +
