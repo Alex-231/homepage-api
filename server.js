@@ -46,7 +46,6 @@ app.use("/static", express.static("./app/front/static"));
 require('./app/routes/main')(app);
 app.use('/static', express.static('./app/static'));
 
-
 // error handling
 app.use(function(err, req, res, next){
     console.error(err.stack);
