@@ -33,15 +33,15 @@ module.exports = function(app) {
           "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
           "<rss version=\"2.0\">\r\n" +
           "  <channel>\r\n" +
-          "		<title>Alex Newark's Blog</title>\r\n" +
-          "		<link>http://alexnewark.co.uk/blog</link>\r\n" +
-          "		<description></description>\r\n" +
-          "		<language>en-us</language>\r\n" +
-          "		<pubDate>" + Date.now().toString(); + "</pubDate>\r\n" +
-          "		<lastBuildDate>" + Date.now().toString(); + "</lastBuildDate>\r\n";
+          "    <title>Alex Newark's Blog</title>\r\n" +
+          "    <link>http://alexnewark.co.uk/blog</link>\r\n" +
+          "    <description></description>\r\n" +
+          "    <language>en-us</language>\r\n" +
+          "    <pubDate>" + Date.now().toString(); + "</pubDate>\r\n" +
+          "    <lastBuildDate>" + Date.now().toString(); + "</lastBuildDate>\r\n";
       
           var rssClose = 
-          "  </channel>\r\n" +
+          "    </channel>\r\n" +
           "</rss>";
           
       
@@ -52,17 +52,17 @@ module.exports = function(app) {
           else
           {
             foundPosts.forEach(blogPost => {
-              rssRes += 
-              "		<item>\r\n" +
-              "			<title>" + blogPost.title + "</title>\r\n" +
-              "			<link>http://alexnewark.co.uk/blog/post/" + blogPost._id + "</link>\r\n"
-              "     <description></description>\r\n" +
-              "			<pubDate>" + blogPost.created + "</pubDate>\r\n" +
-              "			<guid isPermaLink=\"true\">http://alexnewark.co.uk/blog/post/" + blogPost._id + "</guid>\r\n" +
-              "		</item>";
+              rssRes = rssRes +
+              "    <item>\r\n" +
+              "      <title>" + blogPost.title + "</title>\r\n" +
+              "      <link>http://alexnewark.co.uk/blog/post/" + blogPost._id + "</link>\r\n"
+              "      <description></description>\r\n" +
+              "      <pubDate>" + blogPost.created + "</pubDate>\r\n" +
+              "      <guid isPermaLink=\"true\">http://alexnewark.co.uk/blog/post/" + blogPost._id + "</guid>\r\n" +
+              "    </item>";
             });
       
-                  res.send(rssRes + rssClose);
+            res.send(rssRes + rssClose);
           }}
       );
       });
