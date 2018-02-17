@@ -37,8 +37,8 @@ module.exports = function(app) {
           "    <link>http://alexnewark.co.uk/blog</link>\r\n" +
           "    <description></description>\r\n" +
           "    <language>en-us</language>\r\n" +
-          "    <pubDate>" + Date.now().toUTCString() + "</pubDate>\r\n" +
-          "    <lastBuildDate>" + Date.now().toUTCString() + "</lastBuildDate>\r\n";
+          "    <pubDate>" + Date.now().toString() + "</pubDate>\r\n" +
+          "    <lastBuildDate>" + Date.now().toString() + "</lastBuildDate>\r\n";
       
           var rssClose = 
           "    </channel>\r\n" +
