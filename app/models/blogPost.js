@@ -30,6 +30,11 @@ var BlogPostSchema = new mongoose.Schema({
         type: Date,
         required: false,
     },
+    draft: {
+        type: Boolean,
+        required: true,
+        default: false,
+    }
 });
 
 BlogPostSchema.pre('validate', function(next) {
