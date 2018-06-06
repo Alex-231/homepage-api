@@ -52,8 +52,8 @@ app.use(function(err, req, res, next){
     res.status(500).send('Something bad happened!');
   });
 
-  app.get('*', function(req, res){
-    res.status(404).sendfile('./app/front/index.html');
+app.use('*', function(req, res){
+    res.sendfile('./app/front/index.html');
   });
   
 
